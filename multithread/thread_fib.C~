@@ -1,0 +1,17 @@
+//
+//Fibr
+
+#include <iostream>
+#include <thread>
+
+int fit(int n){
+  if(n<=1)return n;
+
+  int fib1,fib2;
+  thread t([=,&fib1]{fib1= fib(n-1);});
+  fib2=fib(n-2);
+
+  t.join();
+
+  return fib1+fib2;
+}
