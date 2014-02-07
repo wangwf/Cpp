@@ -48,26 +48,29 @@ void insertNode(Node*& root, const int& x){
 
 //print all elements InOrder
 void printAll(Node* root){
-  if(root==NULL) return; 
+  if(root==NULL) return;
 
-  printAll(root->left); 
-  cout<<" "<<root->data; 
-  printAll(root->right); 
+  printAll(root->left);
+  cout<<" "<<root->data;
+  printAll(root->right);
 }
 
-//reverse the inOrder traversal, 
+//reverse the inOrder traversal,
 //Note: doesnot work when the maximum duplicate
 void findSecond(Node* root, int& kth){
 
-  if(root==NULL || kth<0) return; 
+  if(root==NULL || kth<0) return;
 
-  findSecond(root->right,kth); 
-  kth--; 
-  if(kth==0){
-    cout<<root->data<<endl; 
-    return; 
+  int count=0;
+  findSecond(root->right,kth);
+  //  kth--;
+  //  if(kth==0){
+  count++;
+  if(count==kth){
+    cout<<root->data<<endl;
+    return;
   }
-  findSecond(root->left, kth); 
+  findSecond(root->left, kth);
 }
 
 
@@ -75,22 +78,22 @@ void findSecond(Node* root, int& kth){
 int main(){
 
   //define a binary tree and fill with random generated numbers
-  int nums=10; 
-  Node* r=new Node(nums/2); 
-  srand(time(NULL)); 
+  int nums=10;
+  Node* r=new Node(nums/2);
+  srand(time(NULL));
   for(int i=0; i<nums; i++){
-    insertNode(r,  rand()%nums); 
+    insertNode(r,  rand()%nums);
   }
 
 
-  cout<<"Print All"<<endl; 
-  printAll(r);  cout<<endl; 
+  cout<<"Print All"<<endl;
+  printAll(r);  cout<<endl;
 
 
-  cout<<" second largest "<<endl; 
+  cout<<" second largest "<<endl;
   int kth=2;
-  findSecond(r, kth); 
+  findSecond(r, kth);
 
 
-  return 0; 
+  return 0;
 }

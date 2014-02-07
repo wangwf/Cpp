@@ -1,8 +1,7 @@
 //
-// Amazon phone interview,  Gene Nilson,  3-4pm, 06/11/2012
-//
-// Q: array based hashset, There are methods: insert(), delete(), find(), 
-//  how to implement printAll(): print element in reversd order of insertion; 
+/
+// Q: array based hashset, There are methods: insert(), delete(), find(),
+//  how to implement printAll(): print element in reversd order of insertion
 //
 //
 
@@ -11,43 +10,43 @@
 #include <iostream>
 #include <stack>
 
-using namespace std; 
+using namespace std;
 
 
 class myHashSet{
-  int* arr; 
-  int length; 
+  int* arr;
+  int length;
 
 public:
-  void insert(int x); 
-  void delet(int x); 
-  int find(int x); 
+  void insert(int x);
+  void delet(int x);
+  int find(int x);
 
-  int hasher(int x); //get index 
-  void printAll(); 
+  int hasher(int x); //get index
+  void printAll();
 
-}; 
+};
 
 //pseudo code
 
-//my answer during interview, using a stack to store the order of insertion.
+//my first answer,  using a stack to store the order of insertion.
 
 void myHashSet::printAll(){
 
   stack s1; //during interview, I only use 1 stack.
 
-  int a, b, c; 
+  int a, b, c;
 
-  insert(a); s1.push_back( hasher(a)); 
-  insert(b); s1.push_back( hasher(b)); 
-  insert(c); s1.push_back( hasher(c)); 
-  
+  insert(a); s1.push_back( hasher(a));
+  insert(b); s1.push_back( hasher(b));
+  insert(c); s1.push_back( hasher(c));
+
   while(s1){
-    int indx=s1.pop(); 
-    s2.push_back(indx); 
-    cout<< arr[indx]<<" ": 
+    int indx=s1.pop();
+    s2.push_back(indx);
+    cout<< arr[indx]<<" ":
   }
-  cout<<endl; 
+  cout<<endl;
 
 }
 
@@ -63,23 +62,22 @@ struct InsertionStack{
 
 void myHashSet::printAll(){
 
-  InsertionStack myInsertion;  
+  InsertionStack myInsertion; 
 
+  int a, b, c;
 
-  int a, b, c; 
-
-  insert(a); myInsertion.add( hasher(a)); 
+  insert(a); myInsertion.add( hasher(a));
   insert(b); myInsertion.add( hasher(b));
   insert(c); myInsertion.add( hasher(c));
 
 
   for(int i= myInsertion.nmax-1; i>=0; i--){
-    int indx=myInsertion.ordering[i]; 
-    cout<< arr[indx]<<" ": 
+    int indx=myInsertion.ordering[i];
+    cout<< arr[indx]<<" ":
   }
-  cout<<endl; 
+  cout<<endl;
 
 }
 
 
-  
+
