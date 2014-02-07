@@ -6,29 +6,39 @@
 #include <iostream>
 #include <string>
 
-using namespace std;; 
+using namespace std;
 
 
 void reverseStr(string& s){
-  int n=s.size(); 
-  if(n<2) return; 
+  int n=s.size();
+  if(n<2) return;
   for(int i=0; i<n/2; i++){
-    //    cout<<"1 "<<s[i]<<" "<<s[n-1-i]<<endl; 
-    char t=s[i]; 
-    s[i]=s[n-1-i]; 
-    s[n-1-i]=t; 
-    //    cout<<"2 "<<s[i]<<" "<<s[n-1-i]<<endl; 
+    //    cout<<"1 "<<s[i]<<" "<<s[n-1-i]<<endl;
+    char t=s[i];
+    s[i]=s[n-1-i];
+    s[n-1-i]=t;
+    //    cout<<"2 "<<s[i]<<" "<<s[n-1-i]<<endl;
   }
 }
+
+//XOR-swap, avoid swapping with self
+void strrev(char *p){
+  char *q=p;
+  while(q&&*q) ++q;
+  for( --q; p<q; ++p, --q){
+    *p = *p^*q;
+    *q = *p^*q;
+    *p = *p^*q;
+  }
 
 
 int main(){
 
- string s="my name is wenfeng"; 
+ string s="my name is wenfeng";
 
- cout<<" Normal order   \""<<s<<"\" "<<endl; 
+ cout<<" Normal order   \""<<s<<"\" "<<endl;
  reverseStr(s);
- cout<<" Reversed order \""<<s<<"\" "<<endl; 
+ cout<<" Reversed order \""<<s<<"\" "<<endl;
 
- return 0; 
+ return 0;
 }

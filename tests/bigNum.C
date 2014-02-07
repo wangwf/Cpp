@@ -11,8 +11,8 @@ Node* addTwoList(Node *l1, Node* l2, int residual){
   Node *sum=new Node;
   sum->data = residual;
 
-  if(!l1) sum->data +=l1->data;
-  if(!l2) sum->data +=l2->data;
+  if(l1) sum->data +=l1->data;
+  if(l2) sum->data +=l2->data;
 
   residual = sum->data /10;
   sum->data = (sum->data)%10;
@@ -22,3 +22,11 @@ Node* addTwoList(Node *l1, Node* l2, int residual){
   return sum;
 
 }
+
+/*
+for(; i>=0 && j>=0; i--, j--, k++){
+int t= num1[i] + num2[i] + carry;
+sum[k] = t%10;
+carry  = carry/10;
+}
+ */
