@@ -1,10 +1,14 @@
 
+#include <iostream>
+#include <stdlib.h>
+
+using namespace std;
 
 //
 // Newton's method
 // x_{k+1} = 1/2 *(x_k + n/x_k)
 //
-int sqrt(int x){
+int sqrt_newton(int x){
   if(x==0) return 0;
   if(x==1) return 1;
 
@@ -21,7 +25,7 @@ int sqrt(int x){
 
 // binary search
 
-int sqrt(int x){
+int sqrt_bst(int x){
   long long high=x;
   long long low=0;
   if(x<=0) return 0;
@@ -33,5 +37,15 @@ int sqrt(int x){
     else if( tmp<x){low=mid;}
     else{high=mid;}
   }
+  //  if(high>low) return high*high-x > x-low*low? low: high;
   return low;
 } 
+
+
+int main(){
+
+  for(int i=0;i<20; i++){
+    cout<<i<<"  "<<sqrt_newton(i)<<" "<<sqrt_bst(i)<<endl;}
+
+  return 0;
+}
