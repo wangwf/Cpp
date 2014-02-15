@@ -147,3 +147,37 @@ ListNode* getFirstNodeInCirclar(ListNode* head){
   }
   return p1;
 }
+
+
+//remove duplicate in linked list, sorted
+ListNode *removeDuplicates(ListNode *head){
+  if(!head || !head->next) return head;
+
+  ListNode *curr=head;
+  while(curr->next){
+    if(curr->val == curr->next->val) curr->next = curr->next->next;
+    else{
+      curr= curr->next;
+    }
+  }
+  return head;
+}
+
+//remove all duplicates
+ListNode *removeAllDuplicate(ListNode *head){
+  if(!head || !head->next) return head;
+  ListNode *prev=new ListNode(0);
+  prev->next=head;
+
+  ListNode *curr=prev;
+  while(curr->next){
+    ListNode *p2=curr->next;
+    while(p2->next && (p2->val == p2->next->val))
+      p2=p2->next; // the last duplictes
+    if(p2== curr->next) //distinct
+      curr = curr->next;
+    else curr->next = p2->next;
+  }
+  return prev->next;
+
+}
