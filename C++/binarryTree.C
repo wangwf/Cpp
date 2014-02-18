@@ -309,4 +309,18 @@ bool isCompleteBinaryTree(node* root){
   }
   return result;
 
+
 }
+
+
+bool isSubTree(node* t1, node* t2){
+  if(t2==NULL) return true;
+  if(!t1) return false;
+  if(t1->val == t2->val){
+    return isSubTree(t1->left, t2->left) && isSubTree(t1->right, t2->right);
+  } else{
+    return isSubTree(t1->left, t2) || isSubTree(t1->right, t2); 
+  }
+  // return false;
+}
+
