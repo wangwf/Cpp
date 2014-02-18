@@ -73,3 +73,21 @@ node* findLCA2(node* root, node* p, node* q){
 }
 
 
+
+//IF node has parent pointer
+node* LCAparent(node* root, node* p, node* q){
+  map<node*, bool> visited;
+  while(p || q){
+    if( visited[p] ) return p;
+    else{
+      visited[p]=true;
+      p=p->parent;
+    }
+    if( visited[q] ) return q;
+    else{
+      visited[q]=true;
+      q=q->parent;
+    }
+  }
+  return false;
+}
