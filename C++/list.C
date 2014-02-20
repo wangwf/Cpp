@@ -33,6 +33,10 @@ void reversePrintList(ListNode* head){
   reversePrintList(head->next);
   cout<<head->val<<" ";
 }
+// IF list is too large to memory, two pass
+// 1. reverseList
+// 2.  print the reversed list and reverse back.
+//
 
 //merge two sorted lists
 ListNode *mergedTwoLists(ListNode *l1, ListNode *l2){
