@@ -1,0 +1,480 @@
+\documentclass[fleqn,twoside]{article}
+\usepackage{graphicx}
+\usepackage[figuresright]{rotating}
+
+
+%\makeindex
+\begin{document}
+
+\title{Memorandum of ``Introduction to Recommender System''}
+
+\author{ Wenfeng Wang \footnote{ Wenfeng.Wang@yahoo.com}\\
+  Memorandum of Courera online course  ``Introduction to Recommender System".
+  \\
+ Instructors: Joseph A. Konstan, Michael Ekstrand
+}
+\date{\today}
+
+\maketitle
+
+\tableofcontents
+%
+
+\section{Introduction}
+
+Learning Objectives
+\begin{itemize}
+ \item Understand what a recommender system
+ \item history $\&$ background
+\end{itemize}
+
+Information Retrieval
+\begin{itemize}
+\item Static content base \\
+     Invest time in indexing content
+\item Dynamic information need \\
+    Queries presented in ``real time"
+\item Common approach: TFIDF
+	\begin{itemize}
+	  \item Rank documens by term overlap
+	   \item Rank tems by frequency
+	\end{itemize}
+\end{itemize}
+
+Information Filtering
+\begin{itemize}
+\item Reverse assumptions from IR  \\
+	Static Information need \\
+	Dynamic content base 
+ \item Invest effort in modeling user need
+	\begin{itemize}
+	  \item  Hand-created profile
+	  \item Machine learned profile
+	  \item Feedback/updates
+	\end{itemize}
+ \item Pass new content through filters
+\end{itemize}
+
+
+Automated CF
+C.F. Engine:  Ratings, Correlations;
+Submit Rating;
+Store Ratings;
+compute Correlations;
+Request Recommendations;
+Identify Neighbors;
+Select Items, Predict Rating.
+
+
+User-User Collaborative Filtering
+
+Recommenders
+
+MovieLens  (Classic collaborative Filtering)
+K-Nearest neighbor User-User
+
+
+\subsection{Taxonomy of Recommender Systems}
+Analytical Framework
+\begin{itemize}
+\item Dimensions of Analysis
+	\begin{itemize}
+	  \item Domain
+	  \item Purpose
+	  \item Recommendation Context
+	  \item Whose Opinions
+	  \item Personalization Level
+	  \item Privacy and Trustworthiness
+	  \item Interfaces
+	  \item Recommendation Algorithms
+	\end{itemize}
+\item Domains of Recommendation
+	 \begin{itemize}
+	 \item Content to Commerce and Beyond
+	    News, information, 	``text"
+	   Products, vendors, bundles
+		matchmaking (other people)
+		Sequences (e.g., music playlists)
+	\item One particularly interesing property
+	  New items (e.g. moviews, books, ...)
+	  Re-recommend old ones (e.g., groceries, music)
+ 	\end{itemize}
+
+\item Purposes of Recommendation  \\
+	Sales, Information \\
+	Education of user/customer \\
+	Build a community of users/customers around products of content \\
+	e.g Tripadvisor.com; ReferralWeb
+
+\item Context
+	\begin{itemize}
+		\item What is the User doing at the time of recommendation? \\
+				Shopping, Listening to Music,  Hanging out with other people
+		\item How does the context constrain the recommender?\\
+			Groups, automatic consumption (vs. suggestions), Level of attention, level of interruption \\
+			e.g.  pandora.com
+
+	\end{itemize}
+\item Whose Opinion?
+		Experts?   \\
+		Ordinary phoaks? \\
+		People like you  \\
+		e.g. wine.com;  phoaks.com; 
+\item Personalization Level
+	\begin{itemize}
+		\item  Generic/ Non-Personalized  --- Everyone receives same recommendations
+		\item Demographic \\	
+			-- Matches a target group
+		\item Ephemeral \\
+			--Matches current activity
+		\item Persistent \\
+			-- Matches long-term interests
+	\end{itemize}
+\item Privacy and Trustworthineses
+	\begin{itemize}
+		\item Who knows what about me?
+			Personal information revealed \\
+			identity \\
+			Deniability of preferences
+		\item Is the recommendation honest?
+			Biases built-in by operator-- business rules \\
+			Vulnerability to external manipulation \\
+			Transparency of ``recommenders"; Reputation
+	\end{itemize}
+\item Interfaces
+	\begin{itemize}
+	\item Types of Ouput: \\
+		Predictions, Recommendations, Filtering, Organice Vs explicit presentation
+	\item Types of Input\\
+		Explicity; Implicit
+	\end{itemize}
+
+\item Recommendation Algorithms
+	\begin{itemize}
+	\item Non-Personalized Summary Statistics
+	\item Content-Based Filtering
+	   Information Filtering;  Knowledge-Based
+	\item Collaborative Filtering
+		User-User;  Item-Item;  Dimensionality Reduction
+	\item Others \\
+		Critique/Interview Based Recommendation;
+		Hybrid Techniques.
+	\end{itemize}
+\end{itemize}
+
+From the Abstract to the Specific
+\begin{itemize}
+\item Basic Model:  Users; Items; Ratings; (Community)
+
+\item Non-Personalized Summary 
+
+External Community Data: Best-seller, Most popular; Trending hot
+Summary of Community Ratings: Best-liked
+Examples:
+	Zagat restaurant ratings; 
+	Billboard music rankings;
+	TripAdvisor hotel ratings
+
+\item Content-based Filtering
+	\begin{itemize}
+	\item User Ratings $\times$ Item Attributs $\rightarrow$ Model
+	\item Model applied to new items via attributes
+	\item Alternative:  Knowledge-based \\
+	  item attributes form model of item space
+	   Users navigate/browse that space
+	\item Examples:
+		Personalized news feeds; 
+		Artist or Genre music feeds
+	\end{itemize}
+\item Personalized Collaborative Filtering
+	\begin{itemize}
+	\item Use Opinions of others to predict/recommend
+	\item User model -- set of ratings
+	\item Item model -- set of ratings
+	\item Common core: sparse matrix of ratings\\
+		Fill in missing values (predict)
+		Select promising cells (recommend)
+	\item Several different techniques
+	\end{itemize}
+\item Collaborative Filtering Techniques
+	\begin{itemize}
+	  \item User-User\\
+		 -- Select neighborhood of similar-taste people. (Variant: select people you know/trust) \\
+		User their opinions
+	\item Item-Item \\
+		Pre-compute similarity among items via ratings
+		Use own ratings to triangulate for recommendation
+	\item Dimensionality reduction \\
+		Intuition: taste yields a lower dimensionality.
+		Compress and use a taste representation
+	\end{itemize}
+\item Note on Evaluation \\
+	To properly understand relative merits of each approach:\\
+		Accuracy of predictions.\\
+		Userfulness of Recommendations \\
+			Correctness, Non-obviousness; Diversity
+		Computational performance
+\item Other Approaches
+	\begin{itemize}
+	\item Interactive recommenders: Critique-based, dialog-based
+	\item Hybrids of various techniques
+	\end{itemize}
+\end{itemize}
+
+
+\section{Non-personalized recommenders}
+\subsection{Learning Objectives}
+
+Non-personalized averages can be effective in the right application
+Association rule:
+\begin{equation}
+	\frac{P(X~~AND~~Y}{P(X)\times P(Y)}
+\end{equation}
+
+Product associations can provide useful non-personalized recommendations in a context --- Need to identify context; data source/scope.
+
+\subsection{Preference and Ratings}
+
+	We want to know: What do users like? \\
+	What can observe? What Users tell us (ratings) and What users do (actions)?\\
+	These are noisy measurements of preference:
+		Explicit: Rating, Review, Vote; 
+		Implicit:  Click, Purchase,  Follow
+		
+	Difficulties with Ratings
+		Are ratings reliable and accurate?
+		Do user preferences change?
+		What does a rating mean?
+		
+\subsection{Predictions and Recommendation}
+Often two come together. Prediction: 
+
+\begin{itemize}
+\item pro: helps quantify item.
+\item con: provides something falsifiable
+\end{itemize}
+
+Recommendations
+\begin{itemize}
+\item pro:  provides good choices as a default
+\item con: if perceived as top-n, can result in failure to explore (if top few seem poor)
+\end{itemize}
+
+\subsection{Scoring and Ranking}
+
+\begin{itemize}
+\item  Several ways of computing and displaying predictions
+\item  How to rank items with sparse, time-shifting data
+\item  Points in the design space for prediction and recommendation,  and tradeoff.
+\end{itemize}
+
+Displaying Aggregate Preference (Prediction) \\
+Ranking Items (recommend)
+
+\subsection{Displaying Aggregate Preference (Prediction)}
+
+\begin{itemize}
+\item Average rating/upvote proportion\\
+	of people who vote, do they like it?
+	Doesn't show popularity
+\item Net upvotes / Number of likes\\
+	Shows popularity
+	No controversy
+\item $\%\geq 4$ starts ('positive')
+\item Full distribution 
+\end{itemize}
+
+{\it Goal of Display:  To help users decide to buy/read/view the item}
+
+\subsection{Ranking Considerations}
+
+Why not rank by score?
+	Too little data.
+	Score may be multivariate.
+	Domain or business considerations:  old item, unfavored item
+	
+Ranking Considerations:\\
+Confidence: How confident are we that this item is good?
+Risk tolerance: High-risk, high-reward; Conservative recommendation
+Domain and business consideration --Time ( Reddit: Old stories aren't interesting; eBay: items have short lifetimes)
+
+
+Dumped means
+
+Confidence Intervals
+
+
+Scoring news stories:
+Hacker News:
+\begin{equation}
+HackerNewsScore = \frac{(U-D-1)^{\alpha}}{(t_{now}- t_{post})^{\gamma}}\times P
+\end{equation}
+
+\begin{equation}
+Reddit2010Score = \log_{10} max(1, |U-D|) + \frac{sign(U-D)t_{post}}{45000}
+\end{equation}
+
+
+\begin{itemize}
+\item Sparsity, inconsistency, temporal concerns make data messy
+\item Simple scoring doesn't necessarily match the domain or business
+\item There are good ways to deal with this (decay time, penalties, damping
+\end{itemize}
+
+
+
+\section{Content-based Recommenders}
+
+  Pure information filtering system
+  Case-base reasoning systems
+  Knowledge-base navigation system
+
+
+Key concept: building a vector of attribute or keyword preferences
+
+TFIDF
+
+Case-based: \\
+Structure a database of cases  around a set of relevant attributes (e.g. camera price, zoom, pixels) \\
+Query based on an example or attribute query, and retrieve relevant cases \\
+Open issue: Many ways to structure interaction
+
+Knowledge-Based Recommender: \\
+Case-Based Example with Navigation Interface. \\
+FindMe System (e.g., Entree)
+
+
+
+\section{User-User Collaborative Filtering}
+
+\section{Evaluation}
+Learning Objectives:
+\begin{itemize}
+\item Learning ways of evaluating the ``goodness" of a recommendation, and of a recommender algorithm or system:
+	\begin{itemize}
+	\item Accuracy metrics
+	\item Error metrics
+	\item Decision-support metrics
+	\item User and Usage-centered metrics
+	\end{itemize}
+
+\item How predictions and recommendations (including top-n) are evaluated?
+\item Retrospective and live approaches to evaluation
+\end{itemize}
+
+Early days:
+\begin{itemize}
+\item Accuracy and error measures:  MAE (Mean Absolute Error), RMSE, MSE
+\item Decision-support metrics:  ROC AUC, Breese score, later precision/recall
+\item Error meets decision-support/user experience:  Reversals
+\item User-centered metrics:  Coverage, user retention, recommendation uptake, satisfaction
+\end{itemize}
+
+A commercial Look:
+Lift, cross-sales, up-sales, conversions
+
+More sophisticated top-n/rank metrics
+Serendipity
+Diversity
+
+Theme 1: prediction vs. Top-N
+\begin{itemize}
+\item prediction is mostly about accuracy, possibly decision support; focused locally
+\item Top-N is mostly about ranking, decision support; focused comparatively
+\end{itemize}
+
+Theme 2: More than just metrics
+
+Theme 3: Unary Data
+
+Theme 4:  Dead (Retrospective) vs Live Recs?
+
+\subsection{Basic Accuracy Metrics}
+MAE: Mean Absolute Error
+MSE: Mean Squared Error
+RMSE:  Root Mean squared error
+
+Average user first, then item ? \\
+OR average everything?
+
+\subsection{Basic Decision Support Metrics}
+
+   The concept of ``decision support" metrics:  Measure how well a recommender helps users make good decisions -- good decisions are about choosing ``good" items and avoiding ``bad" ones. 
+   For recommendations, top of list is what matters most.
+   
+   Precision is the percentage of selected items that are ``relevant"  $P=\frac{N_{rs}}{N_s}$;
+   Recall is the percentage of relevant items that are selected, $R=\frac{N_{rs}}{N_r}$ . 
+   
+ Goal:  Precision is about returning mostly useful stuff. Not waste user time; assumption is that there is more useful stuff than you want.
+ 	    Recall is about not missing useful stuff.  Not make a bad oversight; assumption is that you have time to filter through results to find the key result you need.
+	    F-matrics :$F_1 =\frac{2 PR}{P+R}$
+   
+   Problems:
+   \begin{itemize}
+   \item Need ground truth;  interesting biases on rated items
+   \item  Covers entire data set -- not targeted on top-recommended items
+   $p @ n =  \frac{ N_{r@n} } {n}$.  
+   \end{itemize}
+   
+   Mean Average Precision (MAP) averages over both multiple queries and over position in top-n retrieval. 
+   \begin{eqnarray}{*}
+   Map   &=& \frac{ \sum_{q=1}^{Q} Ave P(q)} {Q}  \\
+   Ave P &=& \frac{\sum_{k=1}^{n} P(k) * rel(k)}{\# relevant~docs}
+   \end{eqnarray}
+   
+   Receiver Operating Characteristic (ROC) is a plot of the performance of a classifier or filter at different thresholds. It plots true-positive against false positives:
+   
+   
+\begin{itemize}
+\item   Error rate and Reversals
+\item Precision, Recall, MAP
+\item Receiver operating characteristic
+\end{itemize}
+
+ $Precision@n $ and overall precision are perhaps the most widely used; ROC provides insight if the goal is to tune the recommender's use as a filter, or identify ``sweet spots" in its performance.
+
+\subsection{Rank Metrics}
+Measuring how good a recommender is at ranking.
+
+\begin{itemize}
+\item Prediction accuracy: how well does the recommender estimate preference?\item Decision support: how well does the recommender do at finding good things?\item Rank accuracy: how well does the recommender estimate relative preference? \\
+	Putting items in order by preference
+\end{itemize}
+
+Mean Reciprocal Rank
+
+Spearman Rank Correlation
+Discounted Cumulative Gain
+
+\subsection{Fallacy of Hidden Data Evaluation}
+\subsection{More Metrics}
+
+\section{Item-Item Collaborative Filtering}
+
+Unary Data
+
+\section{Dimensionality Reduction Recommenders}
+
+\subsection{SVD}
+\subsection{FunkSVD Training algorithm}
+\subsection{Probabilistic Matrix Factorization}
+
+\section{others}
+\subsection{Threat Models}
+\subsection{the Cold Start Problem}
+\subsection{What wasn't covered}
+
+\section{TBD}
+Collaborative Filter
+\begin{itemize}
+\item Non-personalized 
+\item content-based
+\item user-item
+\item user-user
+\item item-item
+\item knowledge-based
+\item trusted-based
+\item hybrid
+\end{itemize}
+
+\end{document}

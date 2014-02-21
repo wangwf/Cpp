@@ -1,0 +1,156 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps� with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+\title{Web Intelligence and Big Data}
+\author{Wenfeng Wang}
+%\date{}							% Activate to display a given date or no date
+
+
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+
+
+
+Here is a brief summary on Web Intelligence and Big Data. 
+
+\section{LOOK}
+  \subsection{indexing}
+	Inverse indexing:  text-document
+	binary tree, heap,  hashtable
+	looking up a posting taking O(logm);
+	  keep the term-lists in a sorted structure
+	  still need to assemble results of a q-term
+
+	class index:
+	  def create(D):
+		 for d in D:
+			for w in d:
+				i=index.lookup(w)
+				if i<0 :
+					i=index.add(w)
+				index.append(j, d.id)
+				
+\subsection{Ranking}
+	Similarity (from search index) vs importance
+PageRank
+PageRank and Memory
+
+Google and the mind: co-evolution
+
+\subsection{Enterprise Search}
+  desktops, email, etc. - private search
+
+	indexing works
+	relevance: no link,  no page-rank
+	Named entities (people, places)
+	relevance feedback
+	duplicate detection and handling
+
+	context 
+	taxonomies and classification
+	security
+	structured data
+
+\subsection{Searching Structured Data}
+
+\subsection{Object search}
+
+ 	index a object (document) by features (words)
+	what if the query is an object
+	{\it	  Locality Sensitive Hashing }
+	Basic idea -- object x is hashed h(x) so that
+		if x==y or x close to y, the h(x)=h(y) with high probability, and conversely
+		if x!=y  or far-from, then h(x) != h(y) with high probability
+
+	\begin{equation}
+		1-(1-(pq)^{k})^b
+	\end{equation}
+
+	some big data applications of LSH
+	\begin{itemize}
+	\item	Grouping similar tweets without comparing all pairs
+	\item near-duplicates/versions of the same root document
+	\item finding patterns in time-series (e.g. sensor data)
+	\item resolving identities of people from multiple inputs
+	\end{itemize}
+
+\subsection{LSH and dimensionality reduction}
+	association memory
+	Spared Distributed matrics
+
+\subsection{recap}
+  Look:
+\begin{itemize}
+\item	Clustering and classification
+\item	topic discovery, summarization
+\item	correlation and interestingness
+\end{itemize}
+
+\section{Listen}
+\subsection{Shannon Information}
+	$$-log_2^p$$
+\subsection{TF-IDF}
+Term Frequency and inversed document frequence
+\begin{equation}
+n_d^w log_2 \frac{N}{N_w}
+\end{equation}•
+
+\subsection{Naive Bayes}
+
+\subsection{Mutual Information}
+	\begin{equation}
+	-f(x,y)log_2 \frac{f(x,y)}{f(x) f(y)}
+	\end{equation}
+
+
+\section{Load}
+	parrallel computing
+	Map-Reduce
+	Distribued File System
+	Evolution of DataBases
+	BigTable and HBase
+	NoSQL and Eventual Consistency
+
+
+\section{Learn}
+
+	Classification
+	Learning grouping -- Clustering
+	Learning rules
+	Larning latent model  (perception)
+	Grounded Learning,  classed can be learned from experience, features can be learned from experience
+\subsection{recap}
+
+	Learning or extracting
+	classes from data -- unsupervised (clustering)
+	rules from data  -- unsupervised (rule mining)
+	big data -- counting works (unified f(x) formulation)
+	classes and features from data -- unsupervised (latent models)
+
+\section{connect }
+ facts from text collections --supervised (Bayesian n/w, HMM)
+	reasoning using rules and facts to 'connect the dots"
+	logical, as well as probabilistic, i.e., reasoning under uncertainty semantic web
+
+belief networks: learning, logic, big-data \& AI
+	network structure can be learned from data
+	application in genomic medicine
+	logic and uncertainty
+		belief networks bridging the gap
+	big data
+		inference can be done using SQL -- MAP-reduce
+	hidden-agenda
+
+	reasoning under uncertainty :  Bayes + PGM
+
+\section{Predict}
+\end{document}  
