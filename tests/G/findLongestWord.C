@@ -8,6 +8,7 @@
 #include <string>
 #include <map>
 #include <list>
+#include <iostream>
 
 using namespace std;
 
@@ -36,4 +37,16 @@ vector<string> findLongest(vector<string> A, vector<string> W)
     res.push_back(W[i]);
   }
   return res;
+}
+
+
+int main(){
+  vector<string> A {"a", "b", "a", "c","t","a"};
+  vector<string> W {"a","cat", "bat", "ba", "car"};
+  vector<string> res = findLongest(A, W);
+
+  for(vector<string>::iterator it=res.begin(); it!=res.end(); it++)
+    cout<<*it<<" ";
+  cout<<endl;
+  return 0;
 }

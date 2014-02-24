@@ -25,3 +25,13 @@ Node* randomNode(Node* head, int k){
     if(head->right) return randomNode(head->right, k-nLeft);
   }
 }
+
+
+//If don't nNodes
+Node* randomNode(Node* head, int& ){
+  if(!head || k<1) return NULL;
+
+  if(k==1) return head;
+  k--;
+  if(head->left) return randomNode(head->left, k);
+  if(head->right) return randomNode(head->right, k);

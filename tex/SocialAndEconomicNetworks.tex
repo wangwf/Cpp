@@ -1,0 +1,243 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ...
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex
+\usepackage{amssymb}
+
+\title{Social and Economic Network: Models and Analysis}
+\author{Wenfeng Wang}
+%\date{}							% Activate to display a given date or no date
+
+
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+
+
+
+Here is a brief summary on  Social and Economic Networks: Model and Analysis.
+Instructors: Mattew O. Jackson.
+
+\section{Introduction}
+\subsection{Motivation, why study networks?}
+
+\begin{itemize}
+\item Many economic, political, and social interactions are shaped by the local structure of relationships:
+  \begin{itemize}
+    \item trade of goods and services, most markets are not centralized...
+    \item sharing of information, favors, risk, ...
+    \item transmission of virus, opinions...
+    \item access to info about jobs ...
+    \item choices of behavior, education, ...
+    \item political alliances, trade alliances ...
+  \end{itemize}
+\item Social network influence behavior
+  \begin{itemize}
+    \item crime, employment, human capital, voting, smoking, ...
+    \item newtworks exhibit heterogeneity, but also have enough underlying structure to model
+  \end{itemize}
+\item Synthesisze
+  \begin{itemize}
+    \item Sociology
+    \item Economics
+    \item Computer Science
+    \item Statistical Physics
+    \item Math (random graph)...
+  \end{itemize}
+  Research interestings (Area of Research):
+  \begin{itemize}
+  \item Theory:\\
+    Network formation, dynamics, design... ; how network influence behavior; coevulation?
+  \item Empirical and experimental work:\\
+    observe networks, patterns, influence; test theory and identify regularities.
+  \item Methodology: \\
+    how to measure and analyze networks
+  \end{itemize}
+\end{itemize}
+
+Focus:
+Random graph methods, Strategic, game theoretic techniques; hybrids, statistical models.
+
+Models:
+Provide insights into why we see certain phenomena: why short path length in social network? \\
+Allow for comparative statis:
+how does component structure change with density?\\
+Predict out of sample: What will happen with a new policy (vaccine, R\&D subsidy,..)? \\
+Allow for statistical estimation: Is there significant clustering on a local level or did it appear at random?\\
+
+
+\subsection{Representing Networks}
+$N=\{1,...,n\}$ nodes, vertices, agents, actors, players...
+edges, links, ties: connections between nodes
+\begin{itemize}
+  \item may have intensity (weighted)
+  \item may just be 0 or 1 (unweighted)
+  \item may be ``undirected `` or ``directed''
+\end{itemize}
+
+{\it Adjacency Matrix, or adjacency list}
+$g~in~\{0, 1\}^{n\times n}$, $g_{ij}$ indices a link, tie or edge between $i$ and $j$.
+Network, $(N, g)$
+
+Simplifying the complexity
+\begin{itemize}
+  \item Global patterns of networks:
+    degree distribution, path lengths...
+  \item Segregation Patterns
+    node types and homophily
+  \item Local Patterns
+    Clustering, Transitivity, Support..
+  \item Positions in networks
+    Neighborhood, Centrality, influence...
+\end{itemize}
+
+path: a walk $(i_1, i_2, ..., i_k)$ with each node $i$ distinct.
+Cycle: a walk where $i_i = i_k$
+Geodesci: a shortest path between two nodes
+
+\subsection{Components}
+$(N,g)$ is connected if there is a path between every two nodes.
+
+Component: maximal connected subgraph
+
+
+Diameter,largest geodesic (largest shortest path, if unconnected, of the largest component)
+
+ average Path length (less prone to outliers)
+
+Neighborhood: $N_i(g) = \{j | ij~in~ g\}$ (usual convention $ii$ not in $g$)
+
+Degree: $d_i =\# N_i(g)$
+
+\subsection{Erdos-Renyi (1959, 1960) Random Graph}
+\begin{itemize}
+  \item Start with n nodes
+  \item each link is formed independently with some probability $p$
+  \item Serves as a benchmark ``G(n,p)''
+\end{itemize}
+
+dense, (almost) connected $d(n)\geq (1+\epilson) log(n), with \epilson\gt 0$
+
+not complete IF $d(n)/n \rightarrow 0$
+
+Theorem on Network structure:
+IF $d(n)\geq (1+\epilson) log(n), with \epilson\gt 0$ and $d(n)/n \rightarrow 0$
+{\it Then for large n, average path length and diameter are approcimately proportional to $log(n)/log(d)$.}
+$$ \frac{AvgDist(n)} {log(n)/log(d)} \rightarrow 1 $$
+
+
+Degree Distribution, G(n, p)
+
+\begin{itemize}
+\item probability that node has d links is binomial
+  $\frac{(n-1)!}{d!(n-d-1)!} p^d(1-p)^{n-d-1}$
+\item large $n$, small $p$, this is approximately a $Poisson$ distribution
+  $\frac{(n-1)^d}{d!} e^{-(n-1)p}$ ``Poisson random graph''
+\end{itemize}
+
+
+Fat tails
+
+\subsection{Clustering}
+
+The fraction of my friends are friends of each other?
+
+Clustering coefficients
+$Cl_i(g) = \#\{ kj~in~g| k, j~in~N_i(g)\}/\#{kj|k,j in N_i(g)}$
+
+Average clustering:
+$Cl^{avg}(g) = \sum_i Cl_i(g)/n$
+
+Overall clustering
+$cl(g) = \sum_i \#\{ kj~in~g| k, j~in~N_i(g)\}/ \sum_i \#{kj|k,j in N_i(g)}$
+
+\section{Background, Definitions, and Measures Continue}
+
+\subsection{Homophily}
+``Bird of a feather flock together'' -- Philemon Holland
+
+age, race, gender, religion, profession... Reasons for Homophily
+opportunity--contact theory;
+benefits/costs;
+social pressure;
+social competition...
+
+\subsection{Centrality Measures--Degree, Closeness, Decay, and Betweenness}
+Position in Network.
+Degree,
+Clustering,
+Distance to other nodes,
+Centrality, influence, power...
+
+\begin{itemize}
+\item degree centrality $d/(n-1)$, --connectedness
+\item Closeness, Decay -- ease of reaching other nodes
+  $\frac{n-1}{ \sum_i l(i,j) }, ~~l(i,j)~distance (i,j)$
+\item decay Centrality
+  $C_i^d(g) = \sum_{j\neq i} \delta^{l(i,j)}$, $\delta \rightarrow 1$ becomes component size,  $\delta \rightarrow 0$ becomes degree.
+$\delta$ in between decaying distance measure: weights distance exponentially.
+
+Normalized decay centrality:  $C_i^d(g) = \sum_{j\neq i} \delta^{l(i,j)} / ((n-1)\delta)$, where $(n-1)\delta$ is the lowest decay possible.
+\item Betweenness -- role as an intermediary, connector
+  $P(i,j)$ number of geodesics between $(i,j)$
+  $P_k(i,j)$ number of geodesics between $(i,j)$ that $k$ lies on.
+
+  $$ \sum_{i,j\neq k} \fract{P_k(i,j)/P(i,j)}{ (n-1)(n-2)/2}  $$
+\item Influence, Prestige, Egenvectors-- ``Not what you know, but who you know''
+
+$$ C_i = a\sum_j g_{ij}C_j$$, centrality is proportional to the sum of neighbors' centralities
+$C^e = a g C^e(g)$, where $C^e(g)$ is an eigenvector -- many possible solutions.
+
+Google PageRankd: score of page is proportional to the sume of the scores of pages linked to it;
+Random surfer model: start at some page on the web, randomly pick a link, follow it, repeat..
+
+Bonacich Centrality:
+$C^b(g) = a g 1 + b g ag1+ b^2 g^2 ag1+...
+ = a(1-bg)^{-1}g1$
+
+\item Diffusion Centrality $DC_i(p,T) = \sum_{t=1...T} (pg)^t 1$,
+if T=1, proportional to degree.
+if $p<1/\lambda_1$, T is large, becomes Katz-Bonacich.
+if $p\ge 1/\lambda_1$, T is large, becomes eigenvector.
+
+\end{itemzie}
+
+\subsection{Random Networks Thresholds and Phase Transitions}
+
+Theorem [Erdos and Reny 1959] A threshold function for the connectedness of a Poisson random network is $t(n) = log(n)/n$
+
+
+\section{Random Networks}
+\subsection{Growing random Network}
+Citation networks, Web, Scientific network, Societies...
+
+log-log distribution
+
+Preferential attachment,  ``richer get richer''
+
+Block model
+
+Markov chain
+
+MCMC
+
+\section{Strategic Network Formation}
+
+pairwise stability
+
+Nash stability
+
+\section{Diffusion on Networks}
+
+Diffusion
+
+\section{Learning on Networks}
+
+\section{Games on Networks}
+
+\end{document}
