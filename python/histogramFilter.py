@@ -1,3 +1,7 @@
+#
+# histogram filter for localization
+# Monte Carlo filter: discret multi-model
+
 colors = [['red', 'green', 'green', 'red' , 'red'],
           ['red', 'red', 'green', 'red', 'red'],
           ['red', 'red', 'green', 'green', 'red'],
@@ -29,7 +33,7 @@ p_stay = 1- p_move
 
 def sense(p, colors, measurement):
     aux = [[0.0 for row in range(len(p[0]))] for col in range(len(p))]
-    
+
     s=0.0
     for i in range(len(p)):
         for j in range(len(p[i])):
@@ -53,7 +57,7 @@ def move(p, motion):
 
 if len(measurements) != len(motions):
     raise ValueError, "error in size of measurement/motion vector"
-    
+
 pinit = 1.0/float(len(colors))/float(len(colors[0]))
 p= [[pinit for rwo in range(len(colors[0]))] for col in range(len(colors))]
 
@@ -62,7 +66,7 @@ for k in range(len(measurements)):
     p = sense(p, colors, measurements[k])
 
 
-#Your probability array must be printed 
+#Your probability array must be printed
 #with the following code.
 
 show(p)
