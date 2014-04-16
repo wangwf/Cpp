@@ -64,3 +64,5 @@ if __name__ == "__main__":
     Q = numpy.random.rand(M,K)
 
     nP, nQ = matrix_factorization(R, P, Q, K)
+    print nP
+    print nQ
