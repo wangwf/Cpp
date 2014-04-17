@@ -92,3 +92,19 @@ pg1 = GET(handle=google,path="/")
 pg2 = GET(handle=google,path="search")
 
 
+
+#### Twitter API ####
+myapp = oauth_app("twitter",
+                  key="LZMG9RxP4hFiDowxYMQ",
+                  secret="Ap8NNB1lEJLb03s25k7QK6HhfiEcnHcOaebn6mpXo0")
+sig = sign_oauth1.0(myapp,
+                    token="369198012-s0YaD6OjfXhKK5yYAdB8JfJkyrMrOMqPSYeh38Kq",
+                    token_secret="rpITlQtCH409EOzKyc0as0HbBLqFuRJoqwIBmPr9P4")
+
+homeTL=GET("https://api.twitter.com/1.1/statuses/home_timeline.json",sig)
+
+
+json1 = content(homeTL)
+json2 = jsonLite::fromJSON(toJSON(json1))
+json2[1,1:4]
+
