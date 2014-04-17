@@ -108,3 +108,29 @@ json1 = content(homeTL)
 json2 = jsonLite::fromJSON(toJSON(json1))
 json2[1,1:4]
 
+
+
+##Q2
+acs<-read.csv("getdata//getdata-data-ss06pid.csv")
+sqldf("select pwgtp1 from acs where AGEP < 50")
+## Q3  unique(acs$AGEP)
+sqldf("select distinct AGEP from acs ")
+
+## Q4
+con = url("http://biostat.jhsph.edu/~jleek/contact.html")
+htmlCode = readLines(con)
+close(con)
+#htmlCode
+nchar(htmlCode[c(10,20,30,100)])
+
+## Q5
+con<-url("https://d396qusza40orc.cloudfront.net/getdata%2Fwksst8110.for")
+htmlCode = readLines(con)
+close(con)
+#htmlCode
+nchar(htmlCode[c(10,20,30,100)])
+
+##
+
+data<-read.fwf("getdata/getdata%2Fwksst8110.for",widths=c(-1,9,-5,4,4,-5,4,4,-5,4,4,-5,4,4),skip=4)
+sum(data[4])
