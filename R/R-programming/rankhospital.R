@@ -12,7 +12,7 @@ rankhospital <- function(state, outcome, num){
   
   hospitals <- data[data$State == state, c(2,i)]
   hospitals[,2] <- as.numeric(hospitals[,2])
-  names(hospitals)<- c("name", "deathRate")
+  names(hospitals)<- c("hospital", "deathRate")
 #  hospitals <- na.omit(hospitals)
 
   a<- rank(hospitals[,2], na.last=NA)
@@ -26,5 +26,5 @@ rankhospital <- function(state, outcome, num){
   }else{
     return(NA)
   }
-  return(hospitals$name[order(hospitals$deathRate, hospitals$name)[r]])
+  return(hospitals$hospital[order(hospitals$deathRate, hospitals$hospital)[r]])
 }
