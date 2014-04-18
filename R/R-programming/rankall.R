@@ -14,18 +14,31 @@ rankall <- function(outcome, num){
   hospitals <- data[data$State == state, c(2,7,i)]
   hospitals[,3] <- as.numeric(hospitals[,3])
   names(hospitals)<- c("name", "state","deathRate")
-  #  hospitals <- na.omit(hospitals)
+  hospitals <- na.omit(hospitals)
   
-  a<- rank(hospitals[,2], na.last=NA)
+ # a<- rank(hospitals[,2], na.last=NA)
   
   if (num =="best"){
-    r <- 1
-  } else if( num =="worst"){
-    r<- length(a)
-  }else if (num <= length(a)){
-    r <- num
+    num <- 1
+  } else if( num =="worst"){}
   }else{
     if (is.na(num)) stop("invalid num")
-    return(NA)
+    else if (num>nrow(hospitals)) {
+        return(NA)
+    }
   }
+
+  results <- NULL
+  for(state in levels(hospitals$state)){
+    hospitals_for_state <- hospitals[hospitals$state ==state,]
+    if(num == "worst"){
+        n<- nrow(hospitals_for_state)
+    }else{
+        n <-num
+    }
+    result <- hospitals_for_state[order(hospitals_for_state$deathRate, hospitals_for_state$name),c(1,2)][n,]
+    result$state <- rep(state, nrow(result))
+    results<-rbind(results, result)
+  }
+
   return(hospitals$name[order(hospitals$deathRate, hospitals$name)[r]])
