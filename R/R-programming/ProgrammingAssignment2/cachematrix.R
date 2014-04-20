@@ -32,8 +32,17 @@ cacheSolve <- function(x, ...) {
     invM
 }
 
-## test from 
+## two tests
 x<-rbind(c(1, -1/4), c(-1/4, 1))  
 xMat<-makeCacheMatrix(x)
-invxM <-cacheSolve(xm)
+invxM <-cacheSolve(xMat)
+invxM <-cacheSolve(xMat)
 x %*% invxM
+
+x<-matrix(c(1,2,3,0,1,4,5,6,0),3,3)
+xMat<-makeCacheMatrix(x)
+invxM <-cacheSolve(xMat)
+invxM <-cacheSolve(xMat)
+x %*% invxM
+
+
