@@ -8,9 +8,9 @@ makeCacheMatrix <- function(x = matrix()) {
         x <<- y
         invM <<- NULL
     }
-    get <- function() invM
+    get <- function() x
     setinvM <- function(invMatrix) invM <<- invMatrix
-    getinM  <- function() invM
+    getinvM  <- function() invM
     list(set = set, get = get,
          setinvM = setinvM,
          getinvM = getinvM)
@@ -21,13 +21,19 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-    invM <- x$getinM()
+    invM <- x$getinvM()
     if(!is.null(invM)){
         message("getting cached data")
         return(invM)
     }
     data <- x$get()
-    invM <-solve(data) 
+    invM <-solve(data) # ginv(data) in MASS package
     x$setinvM(invM)
     invM
 }
+
+## test from 
+x<-rbind(c(1, -1/4), c(-1/4, 1))  
+xMat<-makeCacheMatrix(x)
+invxM <-cacheSolve(xm)
+x %*% invxM
