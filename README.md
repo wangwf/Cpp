@@ -1,6 +1,5 @@
 
 C++ repository
 
-===
-
-small_codes
+LeetCode solutions (C++)
+Euler (C++)
